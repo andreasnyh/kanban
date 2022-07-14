@@ -30,6 +30,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           sizes="32x32"
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
         <meta name="theme-color" content="#317EFB" />
       </Head>
       <Component {...pageProps} />
