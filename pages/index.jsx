@@ -29,6 +29,11 @@ export default function Home() {
       [droppableSource.droppableId]: sClone,
       [droppableDestination.droppableId]: dClone,
     });
+    console.info(
+      `%cRan move(): %cMoved "${removed?.name}" from column "${droppableSource.droppableId}" to "${droppableDestination.droppableId}"`,
+      "color: green;",
+      "color: yellow;"
+    );
   }
 
   function reorder(listName, startIndex, endIndex) {
@@ -36,11 +41,16 @@ export default function Home() {
     const [removed] = res.splice(startIndex, 1);
     res.splice(endIndex, 0, removed);
     setTasks({ ...tasks, [listName]: res });
+    console.info(
+      `%cRan reorder(): %cMoved "${removed?.name}" from position ${startIndex} to ${endIndex}`,
+      "color: green;",
+      "color: yellow;"
+    );
   }
 
   function handleDragEnd({ source, destination }) {
     if (!destination) {
-      console.log("no dest");
+      console.error("Draggable dropped outside of Droppable");
       return;
     }
 
@@ -48,11 +58,9 @@ export default function Home() {
     const dIndex = destination.droppableId;
 
     if (sIndex === dIndex) {
-      console.log("run reorder", sIndex, dIndex);
       reorder(sIndex, source.index, destination.index);
       return;
     }
-    console.log("run move", sIndex, dIndex);
     move(tasks[sIndex], tasks[dIndex], source, destination);
   }
 
