@@ -81,7 +81,7 @@ export default function Home() {
                     key={i}
                     ref={provided.innerRef}
                     className={cn(
-                      "flex p-2 h-full basis-auto flex-col bg-slate-300 gap-4 shadow-md",
+                      "flex p-2 rounded-lg h-full basis-auto flex-col bg-slate-300 gap-4 shadow-md",
                       {
                         "bg-green-200": snapshot.isDraggingOver,
                       }
@@ -103,7 +103,7 @@ export default function Home() {
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
                                 className={cn(
-                                  "card bg-stone-200 p-2 !left-auto",
+                                  "card bg-stone-200 p-2 rounded-lg",
                                   {
                                     "bg-sky-200 drop-shadow-2xl":
                                       snapshot.isDragging,
