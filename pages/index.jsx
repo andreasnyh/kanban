@@ -71,16 +71,22 @@ export default function Home() {
                 {(provided, snapshot) => (
                   <div
                     key={i}
-                    ref={provided.innerRef}                    {...provided.droppableProps}
-                    className="flex p-2 h-full grow basis-auto flex-col bg-slate-300 gap-4 drop-shadow-md"
+                    ref={provided.innerRef}
+                    className={cn(
+                      "flex p-2 h-full basis-auto flex-col bg-slate-300 gap-4 shadow-md",
+                      {
+                        "bg-green-200": snapshot.isDraggingOver,
+                      }
+                    )}
+                    {...provided.droppableProps}
                   >
                     <h2 className="text-lg">{col}</h2>
                     {tasks &&
                       tasks[col]?.map(({ id, name }, index) => (
                         <Draggable
                           key={id}
-                          draggableId={id.toString()}
                           index={index}
+                          draggableId={id.toString()}
                         >
                           {(provided, snapshot) => {
                             return (
@@ -91,7 +97,8 @@ export default function Home() {
                                 className={cn(
                                   "card bg-stone-200 p-2 !left-auto",
                                   {
-                                    "bg-sky-200": snapshot.isDragging,
+                                    "bg-sky-200 drop-shadow-2xl":
+                                      snapshot.isDragging,
                                   }
                                 )}
                               >
